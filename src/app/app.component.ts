@@ -6,6 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  likeCount = 0;
   data = [
     {
       title: "Iphone 12",
@@ -23,5 +24,13 @@ export class AppComponent {
       imageUrl: "https://images.unsplash.com/photo-1612831660296-0cd5841b89fb?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
     }
   ]
+
+  incrementLikes(){
+    this.likeCount++
+  }
+
+  deleteProduct(index){
+    this.data.splice(index, 1)
+  }
 
 }

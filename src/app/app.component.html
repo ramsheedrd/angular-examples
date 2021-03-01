@@ -1,7 +1,14 @@
-<app-card *ngFor="let i of data" 
+<h1>Like Count: {{ likeCount }}</h1>
+
+
+<app-card *ngFor="let i of data; let j = index" 
     [title]="i.title" 
     [subTitle]="i.subTitle"
     [imageUrl]="i.imageUrl"
+    [index] ="j"
+    (liked) = "incrementLikes()"
+    (deleted) = "deleteProduct($event)"
 >
 </app-card>
+
 
