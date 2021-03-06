@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Data } from '@angular/router';
+import { DataService } from './data.service';
 
 @Component({
   selector: 'app-root',
@@ -6,24 +8,29 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
+  data;
+
+  constructor(public service:DataService){
+    // this.data = this.service.data
+    this.service.getFakeData().subscribe((fakedata)=>{
+      this.data = fakedata
+    })
+
+    this.service.createFakePost({title:'Hello'}).subscribe((response)=>{
+      console.log(response)
+    })
+
+    this.service.deleteFakePost(1).subscribe((response)=>{
+      console.log(response)
+    })
+
+
+
+
+  }
+
   likeCount = 0;
-  data = [
-    {
-      title: "Iphone 12",
-      subTitle: "Smart Phone",
-      imageUrl: "https://images.unsplash.com/photo-1612831660296-0cd5841b89fb?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      title: "MI A3",
-      subTitle: "Smart Phone",
-      imageUrl: "https://images.unsplash.com/photo-1612831660296-0cd5841b89fb?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-    },
-    {
-      title: "Lenovo",
-      subTitle: "Laptop",
-      imageUrl: "https://images.unsplash.com/photo-1612831660296-0cd5841b89fb?ixid=MXwxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=300&q=80"
-    }
-  ]
+  
 
   incrementLikes(){
     this.likeCount++

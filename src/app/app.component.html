@@ -3,7 +3,7 @@
 
 <app-card *ngFor="let i of data; let j = index" 
     [title]="i.title" 
-    [subTitle]="i.subTitle"
+    [subTitle]="i.content"
     [imageUrl]="i.imageUrl"
     [index] ="j"
     (liked) = "incrementLikes()"
